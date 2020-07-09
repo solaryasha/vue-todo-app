@@ -1,7 +1,10 @@
 <template>
   <div>
     <div :key="todo.id" v-for="todo in todos">
-       <Todo :todo="todo"/>
+       <Todo 
+       :todo="todo"
+       @del-todo="$emit('del-todo',todo.id)"
+       />
     </div>
   </div>
 </template>
@@ -14,7 +17,7 @@ export default {
   components: {
     Todo,
   },
-  props: ['todos']
+  props: ['todos'],
 }
 </script>
 
