@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <Header />
+    <AddTodo 
+    @add-todo="addTodo"
+    />
     <TodoList 
     :todos="todos"
     @del-todo="deleteTodo"
@@ -8,52 +12,28 @@
 </template>
 
 <script>
-import TodoList from './components/TodoList/TodoList'
+import TodoList from './components/TodoList/TodoList';
+import Header from './components/Header/Header';
+import AddTodo from './components/AddTodo/AddTodo';
 
 export default {
   name: 'App',
   components: {
-    TodoList
+    TodoList,
+    Header,
+    AddTodo,
   },
   data() {
     return {
-      todos: [
-        {
-          userId: 1,
-          id: 1,
-          title: 'Todo 1',
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 2,
-          title: 'Todo 2',
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 3,
-          title: 'Todo 3',
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 4,
-          title: 'Todo 4',
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 5,
-          title: 'Todo 5',
-          completed: false,
-        },
-      ]
+      todos: [],
     }
   },
   methods: {
-    deleteTodo(id){
+    deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id);
+    },
+    addTodo(todo) {
+      this.todos = [...this.todos, todo]
     }
   }
 }
